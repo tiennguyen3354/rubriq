@@ -3,6 +3,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import uploadRoutes from './routes/uploadRoutes.js';
+import scoresRoutes from './routes/scoresRouter.js';
+
 const app = express(); 
 
 
@@ -27,6 +29,7 @@ app.get('/', (req, res) => {
 
 // Use the upload routes for handling file uploads
 app.use(uploadRoutes);
+app.use(scoresRoutes);
 
 
 // listenings 

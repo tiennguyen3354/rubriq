@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Alice Johnson",
+    "grade": 4.0,
+    "notes": "Alice provided a thorough and accurate explanation of LLMs, stating they are Large Language Models trained on vast datasets for natural language processing. She also correctly defined JSON as JavaScript Object Notation, emphasizing its lightweight data format used for data exchange."
+  },
+  {
+    "name": "Michael Smith",
+    "grade": 3.2,
+    "notes": "Michael had a good understanding of JSON, correctly stating its purpose as a data-interchange format. However, his explanation of LLMs lacked depth, mentioning only that they are used in AI without elaboration on training or usage."
+  },
+  {
+    "name": "Samantha Lee",
+    "grade": 3.8,
+    "notes": "Samantha demonstrated strong knowledge of JSON, correctly defining its syntax and use cases. Her response on LLMs was mostly correct but missed details about their training on large datasets."
+  },
+  {
+    "name": "David Martinez",
+    "grade": 2.5,
+    "notes": "David struggled with the definition of LLMs, only mentioning they are AI-related without explaining their function. His JSON response was partially correct but contained confusion between XML and JSON."
+  },
+  {
+    "name": "Jessica Brown",
+    "grade": 3.5,
+    "notes": "Jessica gave a decent response about JSON, correctly stating its role in data exchange. Her LLM explanation was somewhat vague, only mentioning that they help in chatbots without discussing their structure or training."
+  }
+]
