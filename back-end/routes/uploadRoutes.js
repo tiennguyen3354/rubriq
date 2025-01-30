@@ -4,6 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { removePII } from '../utils/removePII.js';
 import upload from '../config/multerConfig.js';
+import { parseToJson } from '../utils/parseToJson.js'; 
+import { getChatResponse } from '../utils/getChatresponse.js';
 
 const router = express.Router();
 
@@ -11,12 +13,12 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 // Endpoint for file upload
 router.post('/upload', upload.single('file'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded!' });
     }
-
     const filePath = req.file.path;
     const outputPath = path.join(__dirname, `../uploads/cleaned-${req.file.originalname}`);
 
@@ -30,15 +32,23 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
         // Log the cleaned file path
         console.log(`Cleaned file saved to: ${outputPath}`);
+        
 
         //  success message and a public URL to download the cleaned file
         res.status(200).json({
             message: 'File uploaded and PII removed successfully!',
             cleanedFile: `/uploads/cleaned-${req.file.originalname}`, // Public URL
         });
+        // This will be a parser method to parse the clean cvs file into a json file
+        const jsonFile = await parseToJson(outputPath); 
+        // console.log(JSON.stringify(jsonFile, null, 2));
+        // this will be a method to get that json file into the llm 
+        const llmResponse = await getChatResponse(jsonFile);  // returne an array of response 
 
+    
         //  delete the original file
         fs.unlinkSync(filePath);
+        
     } catch (error) {
         console.error('Error processing file:', error);
         res.status(500).json({ message: 'Error processing file!' });
